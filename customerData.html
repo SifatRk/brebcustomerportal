@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BREB Customer Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="#">BREB Customer Portal</a>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="https://reb.gov.bd/">Home</a></li>
+                    <li><a href="https://reb.portal.gov.bd/site/page/cc5bcd9a-8664-4ef3-a9c1-6ad6f43f42c5/-">About</a></li>
+                    <li><a href="https://reb.portal.gov.bd/site/view/internal_eservices/-">Services</a></li>
+                    <li><a href="https://reb.gov.bd/site/page/f7107b9d-92f7-43eb-81f9-1bc71cad6edd/-">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger-menu" onclick="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </header>
+    
+    
+    
+    
+    <div class="total">
+        <div id="title">
+            <!-- <h1>BREB Customer Portal</h1> -->
+            <br>
+            <img src="D:\BREBWebsite\NEW\V3\V2.2\images\ss3.jpg" alt="BREB Cover photo">
+        </div>
+        <div><button id="logoutButton"><i class="fas fa-sign-out-alt"></i></button></div>
+        
+        <br>
+
+        <div id="firstPannel">
+            <div class="info-panel blue">
+                <p id="totalAmount">Last Recharge: <strong><span id="TA"></span></strong> BDT</p>
+                <p id="purchaseDate">Recharge time: <span id="PD"></span></p>
+            </div>
+            <div class="info-panel purple">
+                <p id="balance">Remaining Balance: <span id="RB"></span> BDT</p>
+                <p id="balanceGenerationTime">Reading time: <span id="BalGenTime"></span></p>
+            </div>
+            <div class="info-panel orange">
+                <p>Used This Month: N/A</p>
+                <p>In BDT: 400.19 BDT</p>
+            </div>
+            <div class="info-panel green">
+                <p id="=monthTotalVending">Recharged Last Month: <span id="MTV"></span> BDT</p>
+                <p>Recharged This Year: N/A</p>
+            </div>
+            <div class="info-panel red">
+                <p id="maxDemand">Max load last month: <span id="MD"></span> kW</p>
+                <p>Max load last year: 0.00 kW</p>
+            </div>
+        </div>
+    <!-- Customer Details -->    
+        <hr>
+        <div class="consumer-info">
+            
+            <h1><i class="fas fa-user customer-icon"></i> Consumer Information  </h1>
+            <br>
+
+            <div class="info-row">
+                <span>Name</span>
+                <span id="customerName"></span>
+                <span>Customer No</span>
+                <span id="customerNo"></span>
+            </div>
+            <div class="info-row">
+                <span>Mobile Number</span>
+                <span id="mobilePhone"></span>
+                <span>Email</span>
+                <span id="mail"></span>
+            </div>
+            <div class="info-row">
+                <span>Address</span>
+                <span id="address"></span>
+                <span>Tariff</span>
+                <span id="tariff"></span>
+            </div>
+            <div class="info-row">
+                <span>Sanction Load</span>
+                <span id="sanctionLoad"></span>
+                <span>Tariff Solution</span>
+                <span id="tariffSolution"></span>
+            </div>
+            <div class="info-row">
+                <span>Organization</span>
+                <span id="organization"></span>
+                <span>Map Lon</span>
+                <span id="mapLon"></span>
+            </div>
+            <div class="info-row">
+                <span>Map Lat</span>
+                <span id="mapLat"></span>
+                <span>Feeder Name</span>
+                <span id="feederName"></span>
+            </div>
+            <div class="info-row">
+                <span>Meter Type</span>
+                <span id="meterType"></span>
+                <span>Installation Date</span>
+                <span id="installionDate"></span>
+            </div>
+            <div class="info-row">
+                <span>Device Status</span>
+                <span id="deviceStatus"></span>  
+            </div>
+        </div>
+        <hr>
+        
+
+    <!-- Recharge History -->
+
+        <div id="RechargeHistory">
+            <div class="recharge-history">
+                <h2><i class="fas fa-history recharge-history-icon"></i> Recharge History (Last 1 year)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Action</th>
+                            <th>Date & Time</th>
+                            <th>Meter No</th>
+                            <th>Recharge Amount</th>
+                            <th>Energy Amount</th>
+                            <th>Meter Rent</th>
+                            <th>Demand Charge</th>
+                            <th>Recharged By</th>
+                            <!-- <th>Token</th> -->
+                            <th>Online Token Send</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+
+
+
+<div class="full">
+    <div class="con1">
+        <h2>Daily Consumption </h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>Consumed (TK)</th>
+                    <th>Consumed Unit (Kwh)</th>
+                    <th>Max Used Load (Kw)</th>
+                    <th>Total Recharge (TK)</th>
+                </tr>
+            </thead>
+            <tbody id="dataBody3"></tbody>
+        </table>
+    </div>
+    <div class="con1">
+        <h2>Monthly Consumption (Last 1 year)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>Consumed (TK)</th>
+                    <th>Consumed Unit (Kwh)</th>
+                    <th>Max Used Load (Kw)</th>
+                    <th>Total Recharge (TK)</th>
+                </tr>
+            </thead>
+            <tbody id="dataBody2"></tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<hr>
+
+        <!-- Chart Details --> 
+    
+    
+
+            <div class="cc">
+                <div class="chart-info">
+                    <div class="chart-container">
+                        <h2>Daily Consumption (Last 15 days)</h2>
+                        <div>
+                            <canvas id="consumptionChart" width="50px" height="10px"></canvas>
+                        </div>
+                    </div>
+                </div>
+        
+            </div>
+            
+            
+        
+            <!-- <hr> -->
+
+            <div class="chart-info">
+                <div class="chart-container">
+                    <h2>Monthly Consumtion (Last 12 month)</h2>
+                    <div>
+                        <canvas id="consumptionChart2" width="50px" height="10px"></canvas>
+                    </div>
+                </div>
+            </div>
+
+    
+    
+        
+
+
+
+    </div>
+
+
+
+    
+<!--JS Script-->
+
+    <script>
+        function toggleMenu() {
+            const navbar = document.querySelector('.navbar');
+            navbar.classList.toggle('active');
+        }
+
+
+
+// Fetch data from an API endpoint
+        const urlParams = new URLSearchParams(window.location.search);
+        const meterNumber = urlParams.get('meterNumber');
+
+// Pass the meter number to the chart-setup.js script
+    document.addEventListener('DOMContentLoaded', () => {
+        setupChart(meterNumber);
+    });
+
+        if (!meterNumber) {
+            alert('Customer number not found.');
+            // Optionally, redirect the user back to the login page
+            window.location.href = 'login.html';
+        }
+        const endDate = getTodayDateEncoded();
+        const startDate = getOneYearAgoDate();
+    
+        const apiUrlCustInfo = `http://202.164.214.155:59130/nesco-app/api/customer-info?meterNo=${meterNumber}`;
+        const apiUrlRemainBalance = `http://202.164.214.155:59130/nesco-app/api/remain-balance?meterNo=${meterNumber}`
+        const apiUrlPurchaseHistory = `http://202.164.214.155:59130/nesco-app/api/purchase-history?endTime=${endDate}&meterNo=${meterNumber}&starTime=${startDate}`
+        const apiUrlEnergy = `http://202.164.214.155:59130/nesco-app/api/energy?meterNo=${meterNumber}`
+        
+        fetch(apiUrlCustInfo)
+            .then(response => {
+                // Check if response is successful (status 200)
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                // Parse the JSON response
+                return response.json();
+            })
+            .then(data => {
+                // Update the content of the spans with the fetched data
+                document.getElementById('customerName').textContent = data.data.customerName;
+                document.getElementById('customerNo').textContent = data.data.customerNo;
+                document.getElementById('address').textContent = data.data.address;
+                document.getElementById('mobilePhone').textContent = data.data.mobilePhone;
+                document.getElementById('mail').textContent = data.data.mail;
+                document.getElementById('tariff').textContent = data.data.tariff;
+                document.getElementById('sanctionLoad').textContent = data.data.sanctionLoad;
+                document.getElementById('tariffSolution').textContent = data.data.tariffSolution;
+                document.getElementById('organization').textContent = data.data.organization;
+                document.getElementById('mapLon').textContent = data.data.mapLon;
+                document.getElementById('mapLat').textContent = data.data.mapLat;
+                document.getElementById('feederName').textContent = data.data.feederName;
+                document.getElementById('meterType').textContent = data.data.meterType;
+                document.getElementById('installionDate').textContent = data.data.installionDate;
+                document.getElementById('deviceStatus').textContent = data.data.deviceStatus;
+                // Repeat the above line for other spans and data properties
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+        
+        
+        fetch(apiUrlRemainBalance)
+            .then(response => {
+                // Check if response is successful (status 200)
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                // Parse the JSON response
+                return response.json();
+            })
+            .then(data => {
+                // Update the content of the spans with the fetched data
+                document.getElementById('RB').textContent = data.data.balance;
+                let balanceGenTime = convertTimestampToDateTime(data.data.balanceGenerationTime); 
+                ////call the funtion to format time-date and store in balanceGenTime.
+                document.getElementById('BalGenTime').textContent = balanceGenTime;
+                //document.getElementById('BalGenTime').textContent = data.data.balanceGenerationTime;
+                
+                // Repeat the above line for other spans and data properties
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            }); 
+            
+        
+        // JavaScript to fetch data and create modal
+        fetch(apiUrlPurchaseHistory)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const tableBody = document.getElementById('dataBody');
+                data.data.forEach(item => {
+                    const row = document.createElement('tr');
+
+                    const actionCell = document.createElement('td');
+                    const detailsButton = document.createElement('button');
+                    detailsButton.classList.add('details-button');
+                    detailsButton.textContent = 'Details';
+                    detailsButton.addEventListener('click', () => {
+                        openDetailsModal(item);
+                    });
+                    actionCell.appendChild(detailsButton);
+                    row.appendChild(actionCell);
+
+                    const dateTimeCell = document.createElement('td');
+                    dateTimeCell.textContent = item.purchaseDate;
+                    row.appendChild(dateTimeCell);
+
+                    const meterNoCell = document.createElement('td');
+                    meterNoCell.textContent = item.meterNo;
+                    row.appendChild(meterNoCell);
+
+                    const totalAmountCell = document.createElement('td');
+                    totalAmountCell.textContent = item.totalAmount;
+                    row.appendChild(totalAmountCell);
+
+                    const energyAmountCell = document.createElement('td');
+                    energyAmountCell.textContent = item.purchaseEnergy;
+                    row.appendChild(energyAmountCell);
+
+                    const meterRentCell = document.createElement('td');
+                    meterRentCell.textContent = item.rent;
+                    row.appendChild(meterRentCell);
+
+                    const demandChargeCell = document.createElement('td');
+                    demandChargeCell.textContent = item.demandCharge;
+                    row.appendChild(demandChargeCell);
+
+                    const saleNameCell = document.createElement('td');
+                    saleNameCell.textContent = item.saleName;
+                    row.appendChild(saleNameCell);
+
+                    const statusCell = document.createElement('td');
+                    statusCell.textContent = item.remoteRechargeStatus;
+                    row.appendChild(statusCell);
+
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+
+function openDetailsModal(item) {
+    // Create modal container
+    const modalContainer = document.createElement('div');
+    modalContainer.classList.add('modal');
+
+    // Create modal content
+    const modalContent = document.createElement('div');
+    modalContent.classList.add('modal-content');
+
+    // Create close button
+    const closeButton = document.createElement('span');
+    closeButton.classList.add('closeBtn');
+    closeButton.innerHTML = '&times;';
+    closeButton.addEventListener('click', () => {
+        document.body.removeChild(modalContainer);
+    });
+
+    // Create details content
+    const detailsContent = document.createElement('div');
+    detailsContent.classList.add('details-content');
+    detailsContent.innerHTML = `
+        <h1>Bangladesh Rural Electrification Board</h1>
+        <p><strong>Purchase Date:</strong> ${item.purchaseDate}</p>
+        <p><strong>Order No:</strong> ${item.orderNo}</p>
+        <hr>
+        <p><strong>Customer Name: </strong> ${item.customerName}</p>
+        <p><strong>Meter No:</strong> ${item.meterNo}</p>
+        <p><strong>Account No:</strong> ${item.customerNo}</p>
+        <p><strong>Online Token Send:</strong> ${item.remoteRechargeStatus}</p>
+        <hr>
+        <p><strong>Energy Amount:</strong> ${item.purchaseEnergy} TK</p>
+        <p><strong>Demand Charge:</strong> ${item.demandCharge} TK</p>
+        <p><strong>Meter Rent:</strong> ${item.rent} TK</p>
+        <p><strong>Vat:</strong> ${item.tax} TK</p>
+        <p><strong>Rebate:</strong> ${item.subsidyAmount} TK</p>
+        <p><strong>Total Amount:</strong> ${item.totalAmount} TK</p>
+        <hr>
+        <div>
+            <span style="text-align:left">Token:</span>
+            <span style="text-align:right"><strong>${item.token}</strong></span>
+        </div>
+    `;
+
+    // Append close button and details content to modal content
+    modalContent.appendChild(closeButton);
+    modalContent.appendChild(detailsContent);
+
+    // Append modal content to modal container
+    modalContainer.appendChild(modalContent);
+
+    // Append modal container to body
+    document.body.appendChild(modalContainer);
+
+    // Display the modal
+    modalContainer.style.display = 'flex';
+}
+
+
+
+        fetch(apiUrlPurchaseHistory)
+            .then(response => {
+                    // Check if response is successful (status 200)
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    // Parse the JSON response
+                    return response.json();
+                })
+            .then(data => {
+                    // Update the content of the spans with the fetched data
+                    document.getElementById('TA').textContent = data.data[0].totalAmount;
+                    document.getElementById('PD').textContent = data.data[0].purchaseDate;
+                    
+                    // Repeat the above line for other spans and data properties
+                })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            }); 
+
+
+        fetch(apiUrlEnergy)
+            .then(response => {
+                // Check if response is successful (status 200)
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                // Parse the JSON response
+                return response.json();
+            })
+            .then(data => {
+                // //const totalAmountFirstResponse = data.data[0].totalAmount;
+                 document.getElementById('MTV').textContent = data.data.energy[0].monthTotalVending;
+                 document.getElementById('MD').textContent = data.data.energy[0].maxDemand;
+                //document.getElementById('TE').textContent = data.data.energy[0].totalEnergy
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+
+
+
+
+
+        fetch(apiUrlEnergy)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const tableBody = document.getElementById('dataBody2');
+                data.data.energy.forEach(item => {
+                    const row = document.createElement('tr');
+
+
+                    const dataDtCell = document.createElement('td');
+                    dataDtCell.textContent = item.dataDt;
+                    row.appendChild(dataDtCell);
+
+                    const totalAmountCell = document.createElement('td');
+                    totalAmountCell.textContent = item.totalAmount;
+                    row.appendChild(totalAmountCell);
+
+                    const totalElectricityCell = document.createElement('td');
+                    totalElectricityCell.textContent = item.totalElectricity;
+                    row.appendChild(totalElectricityCell);
+
+                    const maxDemandCell = document.createElement('td');
+                    maxDemandCell.textContent = item.maxDemand;
+                    row.appendChild(maxDemandCell);
+
+                    const monthTotalVendingCell = document.createElement('td');
+                    monthTotalVendingCell.textContent = item.monthTotalVending;
+                    row.appendChild(monthTotalVendingCell);
+
+
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+            
+    
+    
+
+
+        fetch(apiUrlEnergy)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const tableBody = document.getElementById('dataBody3');
+                data.data.energy.forEach(item => {
+                    const row = document.createElement('tr');
+
+
+                    const dataDtCell = document.createElement('td');
+                    dataDtCell.textContent = item.dataDt;
+                    row.appendChild(dataDtCell);
+
+                    const totalAmountCell = document.createElement('td');
+                    totalAmountCell.textContent = item.totalAmount;
+                    row.appendChild(totalAmountCell);
+
+                    const totalElectricityCell = document.createElement('td');
+                    totalElectricityCell.textContent = item.totalElectricity;
+                    row.appendChild(totalElectricityCell);
+
+                    const maxDemandCell = document.createElement('td');
+                    maxDemandCell.textContent = item.maxDemand;
+                    row.appendChild(maxDemandCell);
+
+                    const monthTotalVendingCell = document.createElement('td');
+                    monthTotalVendingCell.textContent = item.monthTotalVending;
+                    row.appendChild(monthTotalVendingCell);
+
+
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+
+
+    
+
+    
+
+// ===========END=================
+
+ 
+    
+        function getTodayDateEncoded() {
+            const today = new Date();
+
+            // Extract day, month, and year components
+            const day = today.getDate();
+            const month = today.getMonth() + 1; // Months are zero-based, so add 1
+            const year = today.getFullYear(); // Get full year
+
+            // Format day, month, and year with leading zeros if needed
+            const formattedDay = day < 10 ? '0' + day : day;
+            const formattedMonth = month < 10 ? '0' + month : month;
+
+            // Format the date as "DD%2FMM%2FYYYY"
+            const encodedDate = `${formattedDay}%2F${formattedMonth}%2F${year}`;
+
+            return encodedDate;
+        }
+
+        function getOneYearAgoDate() {
+            const today = new Date();
+            const oneYearAgo = new Date(today);
+            oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+            
+            // Extract day, month, and year components
+            const day = oneYearAgo.getDate();
+            const month = oneYearAgo.getMonth() + 1; // Months are zero-based, so add 1
+            const year = oneYearAgo.getFullYear(); // Get full year
+
+            // Format day, month, and year with leading zeros if needed
+            const formattedDay = day < 10 ? '0' + day : day;
+            const formattedMonth = month < 10 ? '0' + month : month;
+
+            // Format the date as "DD%2FMM%2FYYYY"
+            const encodedDate = `${formattedDay}%2F${formattedMonth}%2F${year}`;
+
+            return encodedDate;
+        }
+
+
+        // Add event listener to the logout button
+        document.getElementById('logoutButton').addEventListener('click', function() {
+            // Redirect to the login page
+            window.location.href = "login.html";
+        });
+
+
+
+    function convertTimestampToDateTime(timestamp) {
+      // Create a new Date object from the timestamp
+      let date = new Date(timestamp);
+
+      // Extract year, month, day, hour, minute, and second from the Date object
+      let year = date.getFullYear();
+      let month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-based
+      let day = date.getDate().toString().padStart(2, '0');
+      let hours = date.getHours().toString().padStart(2, '0');
+      let minutes = date.getMinutes().toString().padStart(2, '0');
+      let seconds = date.getSeconds().toString().padStart(2, '0');
+
+      // Format the date as YYYY-MM-DD HH:MM:SS
+      return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+    
+    }
+ 
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="chart-setup.js"></script>
+    
+    <hr>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section about">
+                <h2>About Us</h2>
+                <p><strong style="color: rgb(214, 63, 63);">Mission: </strong>To ensure affordable, reliable, sustainable and modern electricity services for all the people of the country by 2030.</p>
+                <p><strong style="color: rgb(214, 63, 63);">Vision: </strong>Ensuring quality electricity service for all people of Bangladesh.</p>
+            </div>
+            <div class="footer-section links">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="https://reb.portal.gov.bd/site/page/580b5249-9d83-4489-90a7-9c9130d05849/-">Emergency Contact</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact">
+                <h2>Contact Us</h2>
+                <p><strong style="color: rgb(226, 116, 116);">Email:</strong> info@breb.com</p>
+                <p><strong style="color: rgb(226, 116, 116);">Phone:</strong> (88) 02-8916424-28</p>
+                <p><strong style="color: rgb(226, 116, 116);">Address:</strong> Head Office, Nikunja-2, Khilkhet,Dhaka-1229, Bangladesh</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 Star Instrument | Designed by <a href="https://www.szstar.com/"><strong>IT Department</strong></a>
+        </div>
+    </footer>
+</body>
+</html>

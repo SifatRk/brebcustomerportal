@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumption Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<canvas id="consumptionChart" width="800" height="400"></canvas>
+
+<script>
+    // Function to fetch data from the API
+    async function fetchData() {
+        try {
+            const response = await fetch('http://202.164.214.155:59130/nesco-app/api/energy?meterNo=12021017361');
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    // Function to create and update the chart
+    async function updateChart() {
+        const data = await fetchData();
+
+        // Sort data by date in ascending order
+        // data.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+        const labels = data.data.energy.map(entry => entry.dataDt);
+        const consumptionValues = data.data.energy.map(entry => entry.totalElectricity);
+
+        const ctx = document.getElementById('consumptionChart').getContext('2d');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Consumption',
+                    data: consumptionValues,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    fill: false
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+    // Call the function to update the chart
+    updateChart();
+</script>
+
+</body>
+</html>
